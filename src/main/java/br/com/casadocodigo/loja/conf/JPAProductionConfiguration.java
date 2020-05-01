@@ -34,10 +34,13 @@ public class JPAProductionConfiguration {
 		
 		//usuario:senha@host:port/path
 		
+		System.out.println(System.getenv("DATABASE_URL"));
+		System.getenv("DATABASE_URL");
+		
 		URI dbUrl = new URI(environment.getProperty("DATABASE_URL"));
 		
 
-		dataSource.setUrl("jdbc:postgresql://"+dbUrl.getHost()+":"+dbUrl.getPort()+dbUrl.getPath());
+		dataSource.setUrl("jdbc:postgresql://"+dbUrl.getHost()+":"+dbUrl.getPort()+dbUrl.getPath()+"?useTimezone=true&serverTimezone=America/Sao_Paulo");
 		dataSource.setUsername(dbUrl.getUserInfo().split(":")[0]);
 	    dataSource.setPassword(dbUrl.getUserInfo().split(":")[1]);
 	    
