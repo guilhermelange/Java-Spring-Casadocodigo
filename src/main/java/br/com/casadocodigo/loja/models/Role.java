@@ -11,6 +11,14 @@ public class Role implements GrantedAuthority{
 	private static final long serialVersionUID = 7872503757574608017L;
 	@Id
 	private String nome;
+	
+	
+	public Role() {
+	}
+
+	public Role(String nome) {
+		this.nome = nome;
+	}
 
 	public String getNome() {
 		return nome;
