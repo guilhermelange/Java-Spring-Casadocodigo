@@ -16,7 +16,8 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	//Configurações para quando o sistema subir
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {SecutiryConfiguration.class, AppWebConfiguration.class, JPAConfiguration.class};
+		return new Class[] {SecutiryConfiguration.class, AppWebConfiguration.class, 
+							JPAConfiguration.class, JPAProductionConfiguration.class};
 //		return null;
 	}
 	
@@ -49,11 +50,12 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 		registration.setMultipartConfig(new MultipartConfigElement(""));
 	}
 	
-	@Override
-	public void onStartup(ServletContext servletContext) throws ServletException {
-		super.onStartup(servletContext);
-		servletContext.addListener(RequestContextListener.class);
-		servletContext.setInitParameter("spring.profiles.active", "dev");
-	}
+	//Comentadao para deploy no Heroku
+//	@Override
+//	public void onStartup(ServletContext servletContext) throws ServletException {
+//		super.onStartup(servletContext);
+//		servletContext.addListener(RequestContextListener.class);
+//		servletContext.setInitParameter("spring.profiles.active", "dev");
+//	}
 
 }
