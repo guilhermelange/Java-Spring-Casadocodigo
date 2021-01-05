@@ -98,6 +98,17 @@ public class ProdutosController {
 	    return modelAndView;
 	}
 	
+	@RequestMapping("/exec_javac/{id}")
+	public ModelAndView exec_javac(@PathVariable("id") Integer id){
+	    ModelAndView modelAndView = new ModelAndView("/produtos/detalhe");
+	    Produto produto = produtoDao.find(id);
+	    modelAndView.addObject("produto", produto);
+	    
+	    
+	    
+	    return modelAndView;
+	}
+	
 //	@ResponseBody // Tudo que retornar vai ser o corpo da responta
 //	@RequestMapping("/{id}")
 //	@ResponseBody

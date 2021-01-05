@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class JPAConfiguration {
 	
 	@Bean
-	public LocalContainerEntityManagerFactoryBean EntityManagerFactory(DataSource dataSource, Properties additionalProperties) {
+	public LocalContainerEntityManagerFactoryBean EntityManagerFactory(DataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		
 		//Onde serão procuradas as entidades
@@ -27,7 +27,7 @@ public class JPAConfiguration {
 		
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		factoryBean.setJpaVendorAdapter(vendorAdapter);
-        factoryBean.setJpaProperties(additionalProperties);
+        factoryBean.setJpaProperties(additionalProperties());
         
         return factoryBean;	
 	}
@@ -58,5 +58,7 @@ public class JPAConfiguration {
 	public JpaTransactionManager transactionManager(javax.persistence.EntityManagerFactory emf) {
 		return new JpaTransactionManager(emf);
 	}
+	
+	
 	
 }
